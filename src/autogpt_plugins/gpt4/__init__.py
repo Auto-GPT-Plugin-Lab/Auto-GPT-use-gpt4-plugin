@@ -202,13 +202,16 @@ class AutoGPTgpt4(AutoGPTPluginTemplate):
             PromptGenerator: The prompt generator.
         """
 
+        from .gpt4 import GPT4
+        gpt4 = GPT4()
+
         prompt.add_command(
-            "input text",
-            "input_text",
+            "use_gpt4",
+            "use gpt4",
             {
                 "input_text": "<text>"
             },
-            chat_completion
+            gpt4.chat_completion
         )
 
         return prompt
