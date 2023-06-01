@@ -20,4 +20,3 @@ As part of the AutoGPT plugins package, follow the [installation instructions](h
 Set `ALLOWLISTED_PLUGINS=autogpt-api-tools,example-plugin1,example-plugin2,etc` in your AutoGPT `.env` file.
 
 ## Additional tips.
-<!-- one chunk is set to 4000 tokens. When you use gpt-3.5 4000 maximum token, you should edit varriable "one_chunk" in pdf_to_txt.py. -->

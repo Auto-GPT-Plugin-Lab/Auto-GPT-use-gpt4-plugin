@@ -2,7 +2,7 @@ import os
 import openai
 from dotenv import load_dotenv
 
-load_dotenv()
+load_dotenv('plugins/Auto-GPT-use-gpt4-plugin/src/autogpt_plugins/gpt4.env')
 
 class GPT4:
     def __init__(self):
@@ -18,8 +18,8 @@ class GPT4:
             {"role": "system", "content": "summerize the paper."}
         ]
 
-    def chat_completion(self, message):
-        message = {"role": "user", "content": message}
+    def chat_completion(self, input_text: str):
+        message = {"role": "user", "content": input_text}
         self.prompt.append(message)
         response = openai.ChatCompletion.create(model=self.model, messages=self.prompt, temperature = self.temperature, max_tokens = 2000)
         answer = response['choices'][0]['message']['content']
