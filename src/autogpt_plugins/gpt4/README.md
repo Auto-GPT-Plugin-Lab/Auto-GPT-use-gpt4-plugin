@@ -1,4 +1,11 @@
-# Plugin for PDF to Text
+# Plugin to use gpt4 as auto gpt command
+add this in .env file
+```
+## .env of use gpt4 plugin
+## this is here because API key will hit rate limits with heavy use. you can change the key for this plugin.
+OPENAI_API_KEY_PLUGIN = 
+GPT_MODEL_PLUGIN = gpt4
+```
 
 ## Features(more coming soon!)
 <!-- 

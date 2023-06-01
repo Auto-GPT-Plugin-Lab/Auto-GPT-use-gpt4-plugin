@@ -2,15 +2,15 @@ import os
 import openai
 from dotenv import load_dotenv
 
-load_dotenv('.env.plugin')
+load_dotenv()
 
 class GPT4:
     def __init__(self):
-        self.api_key = os.getenv("OPENAI_API_KEY")
+        self.api_key = os.getenv("OPENAI_API_KEY_PLUGIN")
         if not self.api_key:
-            raise ValueError("OPENAI_API_KEY environment variable not set.")
+            raise ValueError("OPENAI_API_KEY_PLUGIN environment variable not set.")
         openai.api_key = self.api_key
-        self.model = os.getenv("GPT_MODEL", "text-davinci-002")  # Default to "text-davinci-002" if GPT_MODEL is not set
+        self.model = os.getenv("GPT_MODEL_PLUGIN", "gpt-4")  # Default to "gpt-4" if GPT_MODEL is not set
         self.temperature = os.getenv("temperature")
         print(self.model)
         self.prompt = [
