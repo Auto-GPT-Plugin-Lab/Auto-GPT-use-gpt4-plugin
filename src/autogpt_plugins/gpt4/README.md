@@ -8,10 +8,8 @@ GPT_MODEL_PLUGIN = gpt4
 ```
 
 ## Features(more coming soon!)
-<!-- 
-- Convert a PDF file to a text file using the `pdf_to_txt` command
-- Convert PDF files to multiple text files when too long
-    - This may be useful when you want to read the converted text file with Auto-GPT, to avoid the limitation of the number of tokens -->
+- env file system better and easy to edit. 
+- alert system when intering invalid model of gpt.
 
 ## Installation:
 As part of the AutoGPT plugins package, follow the [installation instructions](https://github.com/Significant-Gravitas/Auto-GPT-Plugins) on the Auto-GPT-Plugins GitHub reporistory README page.
@@ -20,3 +18,4 @@ As part of the AutoGPT plugins package, follow the [installation instructions](h
 Set `ALLOWLISTED_PLUGINS=autogpt-api-tools,example-plugin1,example-plugin2,etc` in your AutoGPT `.env` file.
 
 ## Additional tips.
+system input of gpt is set to "summarizing" purpose. If you edit the system, then you can make it have a differnt function.(gpt4.py chat_completion())
