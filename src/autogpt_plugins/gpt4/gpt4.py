@@ -14,13 +14,15 @@ class GPT4:
         self.temperature = os.getenv("temperature")
         print(self.model)
         self.prompt = [
-            {"role": "system", "content": "you are a PDF summerizer. you are heading to a goal to summerize 1 paper devided in 4 because of the length."},
-            {"role": "system", "content": "summerize the paper."}
+            {"role": "system", "content": "you are instructed by auto gpt. listen to the instruction cafully and do the task with the input text."},
         ]
 
-    def chat_completion(self, input_text: str):
+    def chat_completion(self, input_text: str ,input_instruction: str):
+        instruction = {"role": "system", "content": input_instruction}
+        self.prompt.append(instruction)
         message = {"role": "user", "content": input_text}
         self.prompt.append(message)
+
         response = openai.ChatCompletion.create(model=self.model, messages=self.prompt, temperature = self.temperature, max_tokens = 2000)
         answer = response['choices'][0]['message']['content']
         token = response['usage']['total_tokens']

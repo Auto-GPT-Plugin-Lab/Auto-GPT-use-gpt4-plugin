@@ -201,7 +201,7 @@ class AutoGPTgpt4(AutoGPTPluginTemplate):
         Returns:
             PromptGenerator: The prompt generator.
         """
-
+# 変更内容が入ったファイルと指示を受け取る
         from .gpt4 import GPT4
         gpt4 = GPT4()
 
@@ -209,7 +209,8 @@ class AutoGPTgpt4(AutoGPTPluginTemplate):
             "use_gpt4",
             "use gpt4",
             {
-                "input_text": "<text>"
+                "input_text": "<text>",
+                "input_instruction": "<instruction>"
             },
             gpt4.chat_completion
         )
