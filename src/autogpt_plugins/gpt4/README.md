@@ -18,4 +18,5 @@ As part of the AutoGPT plugins package, follow the [installation instructions](h
 Set `ALLOWLISTED_PLUGINS=autogpt-api-tools,example-plugin1,example-plugin2,etc` in your AutoGPT `.env` file.
 
 ## Additional tips.
-system input of gpt is set to "summarizing" purpose. If you edit the system, then you can make it have a differnt function.(gpt4.py chat_completion())
+command use_gpt ("input_text": "<text>", "input_instruction": "<instruction>")
+it can recieve system prompt as instruction and user prompt as text.
