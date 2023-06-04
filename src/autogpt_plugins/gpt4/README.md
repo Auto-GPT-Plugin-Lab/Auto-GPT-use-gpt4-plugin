@@ -18,4 +18,7 @@ As part of the AutoGPT plugins package, follow the [installation instructions](h
 Set `ALLOWLISTED_PLUGINS=autogpt-api-tools,example-plugin1,example-plugin2,etc` in your AutoGPT `.env` file.
 
 ## Additional tips.
-system input of gpt is set to "summarizing" purpose. If you edit the system, then you can make it have a differnt function.(gpt4.py chat_completion())
+mention use_gpt to make autogpt use this command. If autogpt could not read the files, check if 
+example input: ("input_text_files": "<filename1.txt filename2.txt>","input_instruction_file": "<instruction_filename.txt>" )
+- there are only file name in the input. 
+- multiple files for text_file is devided with space.
