@@ -36,7 +36,7 @@ class GPT4:
 
     def chat_completion(self, input_text_files: str ,input_instruction_file: str):
         self.initialize()
-        instruction = {"role": "system", "content": input_instruction}
+        instruction = {"role": "system", "content": input_instruction_file}
         self.prompt.append(instruction)
 
         filenames = input_text_files.split()
