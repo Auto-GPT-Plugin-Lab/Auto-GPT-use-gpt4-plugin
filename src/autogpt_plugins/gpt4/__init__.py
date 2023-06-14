@@ -209,8 +209,10 @@ class AutoGPTgpt4(AutoGPTPluginTemplate):
             "use_gpt4",
             "use gpt4",
             {
+                "input_text": "<text>",
+                "input_instruction": "<instruction>",
                 "input_text_files": "<filename1.txt filename2.txt>",
-                "input_instruction_file": "<instruction_filename.txt>"
+                
             },
             gpt4.chat_completion
         )

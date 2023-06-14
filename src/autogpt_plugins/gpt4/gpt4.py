@@ -11,11 +11,12 @@ class GPT4:
             raise ValueError("OPENAI_API_KEY_PLUGIN environment variable not set.")
         openai.api_key = self.api_key
         self.model = os.getenv("GPT_MODEL_PLUGIN", "gpt-4")  # Default to "gpt-4" if GPT_MODEL is not set
-        self.temperature = os.getenv("temperature")
-        print(self.model)
-        self.prompt = [
-            {"role": "system", "content": "you are instructed by auto gpt. listen to the instruction cafully and do the task with the input text."},
-        ]
+        self.temperature = float(os.getenv("temperature_plugin"))
+        self.pre_inforamtion = os.getenv("PRE_SET_INFO_FILE", None)
+        #print(self.model)
+        # self.prompt = [
+        #     {"role": "system", "content": "you are instructed by auto gpt. listen to the instruction cafully and do the task with the input text."},
+        # ]
     
     def initialize(self):
         self.prompt = [
@@ -34,12 +35,15 @@ class GPT4:
 
         return result
 
-    def chat_completion(self, input_text_files: str ,input_instruction_file: str):
+    def chat_completion(self, input_text: str, input_instruction: str, input_text_files: str):
         self.initialize()
-        instruction = {"role": "system", "content": input_instruction_file}
-        self.prompt.append(instruction)
 
+        message = {"role": "system", "content": input_text}
+        self.prompt.append(message)
+
+        pre_filenames = self.pre_inforamtion.split()
         filenames = input_text_files.split()
+        filenames.extend(pre_filenames)
         error_messages = []  # Initialize error_messages
         for filename in filenames:
             # directory path
@@ -48,14 +52,14 @@ class GPT4:
             cwd = os.path.normpath(cwd)
 
                 # Open and read the instruction file
-            try:
-                with open(os.path.join(cwd, input_instruction_file), 'r') as file:
-                    input_instruction = file.read()
-            except Exception as e:
-                raise IOError(f"Error reading instruction file {input_instruction_file}: {str(e)}")
+            # try:
+            #     with open(os.path.join(cwd, input_instruction_file), 'r') as file:
+            #         input_instruction = file.read()
+            # except Exception as e:
+            #     raise IOError(f"Error reading instruction file {input_instruction_file}: {str(e)}")
 
-            instruction = {"role": "system", "content": input_instruction}
-            self.prompt.append(instruction)
+            # instruction = {"role": "user", "content": input_instruction}
+            # self.prompt.append(instruction)
             
             try:
                 opening_files = self.find_files(filename, cwd)
@@ -71,8 +75,10 @@ class GPT4:
                     error_messages.append(f"Error reading file {opening_file}: {str(e)}")
                     continue
 
-                message = {"role": "user", "content": targettext} #append to text sending to openai
+                message = {"role": "system", "content": targettext} #append to text sending to openai
                 self.prompt.append(message)
+        instruction = {"role": "user", "content": input_instruction}
+        self.prompt.append(instruction)
         print("paru's debug")
         print(self.prompt) #printing for easy debug
 
